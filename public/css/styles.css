@@ -1,49 +1,13 @@
 html,
 body {
-  height: 100%;
-  overflow: hidden;
-}
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slider {
-  width: 350px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.slides {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+  margin: 0;
 }
 
 .slides::-webkit-scrollbar {
   display: none;
 }
-.slides::-webkit-scrollbar-thumb {
-  background: transparent;
-}
-.slides::-webkit-scrollbar-track {
-  background: transparent;
-}
-.slides > div {
-  width: 300px;
-  transition: transform 0.5s;
-  text-align: left;
-  margin-right: 8px;
-}
 
-.slides > div:last-of-type {
-  margin-right: 0px;
-}
-
-.slider > div > a {
+a.pill {
   display: inline-flex;
   width: 8px;
   height: 8px;
@@ -57,18 +21,14 @@ body {
   transition: 0.5s;
 }
 
-.slider > div > a.active {
+a.pill.active {
   background: black;
 }
 
-.slider > div > a:active {
+a.pill:active {
   top: 1px;
 }
 
-.slider > div > a:focus {
+a.pill:focus {
   background: #000;
-}
-
-.car-container {
-  text-align: left;
 }

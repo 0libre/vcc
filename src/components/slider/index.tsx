@@ -12,7 +12,11 @@ const BSFilter = () => {
   } = useSliderContext();
 
   return (
-    <>
+    <View
+      extend={{
+        maxWidth: "100vw",
+      }}
+    >
       <TabNav enableLineTransition>
         {bodyTypes.map((bodyType) => (
           <TabNavItem
@@ -27,7 +31,7 @@ const BSFilter = () => {
         ))}
       </TabNav>
       <Spacer size={5} />
-    </>
+    </View>
   );
 };
 
@@ -36,10 +40,7 @@ const Slider: React.FC = () => (
     <View
       className="slider"
       extend={{
-        width: "350px",
-        fromL: {
-          width: "1225px",
-        },
+        width: "100vw",
       }}
     >
       <BSFilter />

@@ -33,6 +33,7 @@ const NavButtons = () => {
           display: "none",
         },
       }}
+      padding={1}
     >
       <IconButton
         variant="outline"
@@ -40,6 +41,7 @@ const NavButtons = () => {
         onClick={goBackward}
         disabled={backwardDisabled}
       />
+      <Spacer size={1} />
       <IconButton
         variant="outline"
         iconName="navigation-chevronforward"
@@ -59,7 +61,7 @@ const Pill = ({ id }: PillProps) => {
     () => (activeId === id ? "active" : "inactive"),
     [id, activeId]
   );
-  return <a className={className} href={fullId} />;
+  return <a className={`pill ${className}`} href={fullId} />;
 };
 
 const Pills = () => {
@@ -67,7 +69,7 @@ const Pills = () => {
     data: { cars },
   } = useSliderContext();
   return (
-    <>
+    <View>
       <Spacer size={3} />
       <Flex
         extend={{
@@ -84,7 +86,7 @@ const Pills = () => {
           <Pill key={id} id={id} />
         ))}
       </Flex>
-    </>
+    </View>
   );
 };
 

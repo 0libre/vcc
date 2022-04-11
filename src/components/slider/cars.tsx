@@ -4,7 +4,7 @@ import useVolvoAPI from "../../hooks/useVolvoAPI";
 import useScrollIntoView from "../../hooks/useScrollIntoView";
 import Car from "./car";
 import URLS from "../../URLS.json";
-import { View, Spacer } from "vcc-ui";
+import { View } from "vcc-ui";
 
 const Cars = () => {
   const { VolvoAPI } = useVolvoAPI();
@@ -28,8 +28,12 @@ const Cars = () => {
   return (
     <View
       className="slides"
+      padding={2}
       extend={{
+        overflowX: "auto",
         flexDirection: "row",
+        scrollBehavior: "smooth",
+        WebkitOverflowScrolling: "touch",
         fromL: {
           ...(hideDesktop ? { justifyContent: "center" } : {}),
         },

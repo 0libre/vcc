@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo } from "react";
 import Image from "next/image";
-import { View, Text, Link, Flex, Block, Spacer } from "vcc-ui";
+import { useTheme, View, Text, Link, Flex, Block, Spacer } from "vcc-ui";
 import { useInView } from "react-hook-inview";
 import useSliderContext from "./useSliderContext";
 import { Car } from "./types";
 
 const CarContainer = (car: Car) => {
+  const theme = useTheme();
   const [ref, inView] = useInView({ threshold: 0.35 });
   const {
     states: { addIdInView, removeIdFromView },
@@ -23,23 +24,40 @@ const CarContainer = (car: Car) => {
   }, [inView, carId, addIdInView, removeIdFromView]);
 
   return (
-    <View ref={ref} id={car.id}>
-      <Text variant="bates" subStyle="emphasis" foreground="#707070">
-        {car.bodyType}
+    <View
+      ref={ref}
+      id={car.id}
+      extend={{
+        width: "300px",
+        marginRight: "8px",
+        ":last-of-type": {
+          marginRight: "0px",
+        },
+      }}
+    >
+      <Text
+        variant="bates"
+        subStyle="emphasis"
+        foreground={theme.color.foreground.secondary}
+      >
+        {car.bodyType.toLocaleUpperCase()}
       </Text>
       <View
         extend={{
           flexDirection: "column",
-          fromM: {
+          fromL: {
             flexDirection: "row",
           },
         }}
       >
-        <Text variant="columbus" subStyle="emphasis">
+        <Text
+          variant="columbus"
+          subStyle="emphasis"
+          extend={{ paddingRight: "5px" }}
+        >
           {car.modelName}
         </Text>
-        <Spacer size={{ default: 1, "@media (max-width: 768px)": 0 }} />
-        <Text variant="columbus" foreground="#707070">
+        <Text variant="columbus" foreground={theme.color.foreground.secondary}>
           {car.modelType}
         </Text>
       </View>
