@@ -29,17 +29,7 @@ const NavButtons: React.FC = () => {
       backwardDisabled,
     },
   } = useSliderContext();
-  return hideNavigation ? (
-    <View
-      extend={{
-        untilL: {
-          display: "none",
-        },
-      }}
-    >
-      <Spacer size={7} />
-    </View>
-  ) : (
+  return (
     <View
       extend={{
         display: "flex",
@@ -54,21 +44,23 @@ const NavButtons: React.FC = () => {
       <div>
         <ModeToggle />
       </div>
-      <Flex extend={{ flexDirection: "row" }}>
-        <IconButton
-          variant="outline"
-          iconName="navigation-chevronback"
-          onClick={goBackward}
-          disabled={backwardDisabled}
-        />
-        <Spacer size={1} />
-        <IconButton
-          variant="outline"
-          iconName="navigation-chevronforward"
-          onClick={goForward}
-          disabled={forwardDisabled}
-        />
-      </Flex>
+      {!hideNavigation && (
+        <Flex extend={{ flexDirection: "row" }}>
+          <IconButton
+            variant="outline"
+            iconName="navigation-chevronback"
+            onClick={goBackward}
+            disabled={backwardDisabled}
+          />
+          <Spacer size={1} />
+          <IconButton
+            variant="outline"
+            iconName="navigation-chevronforward"
+            onClick={goForward}
+            disabled={forwardDisabled}
+          />
+        </Flex>
+      )}
     </View>
   );
 };
@@ -94,32 +86,29 @@ const Pills: React.FC = () => {
   } = useSliderContext();
 
   return (
-    <View>
+    <Flex
+      extend={{
+        flexDirection: "column",
+        alignItems: "center",
+        fromL: {
+          display: "none",
+        },
+      }}
+    >
       <Spacer size={3} />
       <Flex
         extend={{
           flexDirection: "row",
-          columnGap: "5px",
           justifyContent: "center",
+          columnGap: "5px",
           height: "10px;",
-          fromL: {
-            display: "none",
-          },
         }}
       >
         {!hideNavigation && cars.map(({ id }) => <Pill key={id} id={id} />)}
       </Flex>
-      <View
-        alignItems={"center"}
-        extend={{
-          fromL: {
-            display: "none",
-          },
-        }}
-      >
-        <ModeToggle />
-      </View>
-    </View>
+      <Spacer size={3} />
+      <ModeToggle />
+    </Flex>
   );
 };
 

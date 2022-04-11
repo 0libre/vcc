@@ -1,5 +1,5 @@
 import { StrictMode, useContext } from "react";
-import { StyleProvider, ThemePicker, View } from "vcc-ui";
+import { StyleProvider, ThemePicker, View, Logo, Spacer } from "vcc-ui";
 import ModeProvider, { ModeContext } from "../src/context/mode";
 import Slider from "../src/components/slider";
 import "../public/css/styles.css";
@@ -17,6 +17,8 @@ const Themed = () => {
           justifyContent: "center",
         })}
       >
+        <Logo type="spreadmark" height={12} />
+        <Spacer size={6} />
         <Slider />
       </View>
     </ThemePicker>
