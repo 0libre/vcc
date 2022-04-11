@@ -19,14 +19,16 @@ const Themed = () => {
       <View
         extend={({ theme }) => ({
           background: theme.color.background.primary,
-          height: "100vh",
+          height: "auto",
           width: "100vw",
           justifyContent: "center",
         })}
       >
+        <Spacer size={6} />
         <Logo type="spreadmark" height={12} />
         <Spacer size={6} />
         <Slider />
+        <Spacer size={6} />
       </View>
     </ThemePicker>
   );

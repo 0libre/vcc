@@ -7,7 +7,6 @@ import Filter from "./filter";
 const Slider: React.FC = () => (
   <SliderProvider>
     <View
-      className="slider"
       extend={{
         width: "100vw",
       }}
