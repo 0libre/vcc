@@ -109,7 +109,14 @@ const Pills: React.FC = () => {
       >
         {!hideNavigation && cars.map(({ id }) => <Pill key={id} id={id} />)}
       </Flex>
-      <View alignItems={"center"}>
+      <View
+        alignItems={"center"}
+        extend={{
+          fromL: {
+            display: "none",
+          },
+        }}
+      >
         <ModeToggle />
       </View>
     </View>
