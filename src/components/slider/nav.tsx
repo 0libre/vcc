@@ -12,7 +12,6 @@ import {
 import { ModeContext } from "../../context/mode";
 import useSliderContext from "./useSliderContext";
 import { PillProps } from "./types";
-import Link from "next/link";
 
 const ModeToggle: React.FC = () => {
   const { mode, setMode } = useContext(ModeContext);
@@ -90,24 +89,23 @@ const Pill: React.FC<PillProps> = ({ id }) => {
   const isActive = useMemo(() => activeId === id, [activeId]);
 
   return (
-    <Link href={fullId} passHref>
-      <Click
-        extend={{
-          width: "8px",
-          height: "8px",
-          background: secondary,
-          borderRadius: "50%",
-          transition: "0.5s",
-          ":active": {
-            top: "1px",
-          },
-          ":focus": {
-            background: primary,
-          },
-          ...(isActive ? { background: primary } : {}),
-        }}
-      />
-    </Link>
+    <Click
+      href={fullId}
+      extend={{
+        width: "8px",
+        height: "8px",
+        background: secondary,
+        borderRadius: "50%",
+        transition: "0.5s",
+        ":active": {
+          top: "1px",
+        },
+        ":focus": {
+          background: primary,
+        },
+        ...(isActive ? { background: primary } : {}),
+      }}
+    />
   );
 };
 
