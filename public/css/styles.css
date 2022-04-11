@@ -3,7 +3,7 @@ body {
   margin: 0;
 }
 
-.slides::-webkit-scrollbar {
+::-webkit-scrollbar {
   display: none;
 }
 
@@ -22,13 +22,17 @@ a.pill {
 }
 
 a.pill.active {
-  background: black;
-}
-
-a.pill:active {
   top: 1px;
+  background: black;
 }
 
 a.pill:focus {
   background: #000;
+}
+
+img.car-image {
+  transition: transform 0.2s;
+}
+img.car-image:hover {
+  transform: scale(1.1);
 }

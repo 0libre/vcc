@@ -63,6 +63,7 @@ const CarContainer: React.FC<CarProps> = ({ car }) => {
       </View>
       <Spacer size={{ default: 1 }} />
       <Image
+        className="car-image"
         src={car.imageUrl}
         alt={car.modelName}
         width="320px"
