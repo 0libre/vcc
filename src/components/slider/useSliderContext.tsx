@@ -46,6 +46,13 @@ const useSliderContext = () => {
     [dispatch]
   );
 
+  const setActiveId = useCallback(
+    (id: string) => {
+      dispatch("setActiveId", id);
+    },
+    [dispatch]
+  );
+
   const setCars = useCallback(
     (cars: Cars) => {
       dispatch("addCars", cars);
@@ -117,6 +124,7 @@ const useSliderContext = () => {
     },
     states: {
       activeId,
+      setActiveId,
       addIdInView,
       removeIdFromView,
     },

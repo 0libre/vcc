@@ -11,13 +11,16 @@ export function sliderReducer(
         activeFilter: action.payload,
       };
     case "clearFilters":
-      console.log("Clear it");
       return {
         ...state,
         cars: state.cars.map(({ hide, ...car }) => car),
         activeFilter: Filters.all,
       };
-
+    case "setActiveId":
+      return {
+        ...state,
+        activeId: action.payload,
+      };
     case "addCars": {
       return {
         ...state,

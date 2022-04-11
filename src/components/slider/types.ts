@@ -47,6 +47,7 @@ export type ActionsMap = {
   addCars: Car[];
   activeFilter: Filters;
   clearFilters: void;
+  setActiveId: string;
 };
 
 export type Actions = {

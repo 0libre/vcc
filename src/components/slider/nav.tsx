@@ -76,7 +76,7 @@ const NavButtons: React.FC = () => {
 
 const Pill: React.FC<PillProps> = ({ id }) => {
   const {
-    states: { activeId },
+    states: { activeId, setActiveId },
   } = useSliderContext();
 
   const {
@@ -85,12 +85,17 @@ const Pill: React.FC<PillProps> = ({ id }) => {
     },
   } = useTheme();
 
+  const handleSetActiveId = () => {
+    setActiveId(id);
+  };
+
   const fullId = `#${id}`;
-  const isActive = useMemo(() => activeId === id, [activeId]);
+  const isActive = useMemo(() => activeId === id, [activeId, id]);
 
   return (
     <Click
       href={fullId}
+      onClick={handleSetActiveId}
       extend={{
         width: "8px",
         height: "8px",
