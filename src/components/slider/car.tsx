@@ -3,11 +3,11 @@ import Image from "next/image";
 import { useTheme, View, Text, Link, Flex, Block, Spacer } from "vcc-ui";
 import { useInView } from "react-hook-inview";
 import useSliderContext from "./useSliderContext";
-import { Car } from "./types";
+import { CarProps } from "./types";
 
-const CarContainer = (car: Car) => {
+const CarContainer: React.FC<CarProps> = ({ car }) => {
   const theme = useTheme();
-  const [ref, inView] = useInView({ threshold: 0.35 });
+  const [ref, inView] = useInView({ threshold: 0.75 });
   const {
     states: { addIdInView, removeIdFromView },
   } = useSliderContext();

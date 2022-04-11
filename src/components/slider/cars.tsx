@@ -6,11 +6,10 @@ import Car from "./car";
 import URLS from "../../URLS.json";
 import { View } from "vcc-ui";
 
-const Cars = () => {
+const Cars: React.FC = () => {
   const { VolvoAPI } = useVolvoAPI();
   const {
     data: { cars, setCars },
-    navigation: { hideDesktop },
   } = useSliderContext();
   const { scrollTo } = useScrollIntoView();
 
@@ -34,15 +33,12 @@ const Cars = () => {
         flexDirection: "row",
         scrollBehavior: "smooth",
         WebkitOverflowScrolling: "touch",
-        fromL: {
-          ...(hideDesktop ? { justifyContent: "center" } : {}),
-        },
       }}
     >
       {cars
         .filter((car) => !car.hide)
         .map((car) => (
-          <Car key={car.id} {...car} />
+          <Car key={car.id} car={car} />
         ))}
     </View>
   );

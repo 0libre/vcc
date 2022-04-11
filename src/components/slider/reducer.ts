@@ -1,4 +1,4 @@
-import { Car, Filters } from "./types";
+import { Actions, SliderState, Filters } from "./types";
 
 export function sliderReducer(
   state: SliderState,
@@ -41,30 +41,3 @@ export function sliderReducer(
       };
   }
 }
-
-type IdInView = {
-  id: string;
-  position: number;
-};
-
-export type SliderState = {
-  activeId: string;
-  idsInView: IdInView[];
-  cars: Car[];
-  activeFilter: Filters;
-};
-
-export type ActionsMap = {
-  addIdInView: IdInView;
-  removeIdFromView: string;
-  addCars: Car[];
-  activeFilter: Filters;
-  clearFilters: void;
-};
-
-export type Actions = {
-  [Key in keyof ActionsMap]: {
-    type: Key;
-    payload: ActionsMap[Key];
-  };
-}[keyof ActionsMap];

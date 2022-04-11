@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useCallback } from "react";
-import { sliderReducer, SliderState, Actions, ActionsMap } from "./reducer";
-import { Filters } from "./types";
+import { sliderReducer } from "./reducer";
+import { Filters, SliderState, Actions, ActionsMap } from "./types";
 
 type Dispatcher = <
   Type extends Actions["type"],

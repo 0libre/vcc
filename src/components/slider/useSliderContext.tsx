@@ -2,14 +2,14 @@ import { useContext, useEffect, useCallback, useMemo } from "react";
 import { SliderContext } from "./context";
 import useDebounce from "../../hooks/useDebounce";
 import useScrollIntoView from "../../hooks/useScrollIntoView";
-import { Cars, Filters } from "./types";
+import { Car, Cars, Filters, IdInView, MaxAndMin } from "./types";
 
 const useSliderContext = () => {
   const [{ activeId, cars, idsInView, activeFilter }, dispatch] =
     useContext(SliderContext);
 
-  const { maxPosition, minPosition } = idsInView.reduce(
-    (prev, curr) => ({
+  const { maxPosition, minPosition }: MaxAndMin = idsInView.reduce(
+    (prev: MaxAndMin, curr: IdInView) => ({
       maxPosition:
         curr.position > prev.maxPosition ? curr.position : prev.maxPosition,
       minPosition:
@@ -36,7 +36,7 @@ const useSliderContext = () => {
     (id: string) =>
       dispatch("addIdInView", {
         id,
-        position: cars.findIndex((car) => car.id === id),
+        position: cars.findIndex((car: Car) => car.id === id),
       }),
     [dispatch, cars]
   );
@@ -56,7 +56,7 @@ const useSliderContext = () => {
   const filterCars = (bodyType: Filters) => {
     dispatch("activeFilter", bodyType);
     setCars([
-      ...cars.map(({ hide, ...car }) =>
+      ...cars.map(({ hide, ...car }: Car) =>
         car.bodyType === bodyType ? car : { ...car, hide: true }
       ),
     ]);
@@ -80,23 +80,27 @@ const useSliderContext = () => {
       scrollTo(`#${car.id}`);
     }
   };
-  const forwardDisabled = maxPosition + 1 >= cars.length;
-  const backwardDisabled = minPosition - 1 <= -1;
 
   const filteredCars: Cars = useMemo(
-    () => cars.filter((car) => !car.hide),
+    () => cars.filter((car: Car) => !car.hide),
     [cars]
   );
 
+  const forwardDisabled = maxPosition + 1 >= filteredCars.length;
+  const backwardDisabled = minPosition - 1 <= -1;
+
   const bodyTypes = useMemo(() => {
     const bodyTypesArray = Array.from(
-      new Set(cars.map(({ bodyType }) => bodyType))
+      new Set(cars.map(({ bodyType }: Car) => bodyType))
     );
     bodyTypesArray.unshift(Filters.all);
     return bodyTypesArray;
   }, [cars]);
 
-  const hideDesktop: boolean = filteredCars.length <= 4;
+  const debouncedHideNavigation: boolean = useDebounce<boolean>(
+    filteredCars.length === idsInView.length,
+    500
+  );
 
   return {
     navigation: {
@@ -104,7 +108,7 @@ const useSliderContext = () => {
       goBackward,
       forwardDisabled,
       backwardDisabled,
-      hideDesktop,
+      hideNavigation: debouncedHideNavigation,
     },
     data: {
       bodyTypes,
