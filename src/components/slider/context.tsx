@@ -1,10 +1,10 @@
 import React, { createContext, useReducer, useCallback } from "react";
 import { sliderReducer } from "./reducer";
-import { Filters, SliderState, Actions, ActionsMap } from "./types";
+import { Filters, SliderState, SliderActions, SliderActionsMap } from "./types";
 
 type Dispatcher = <
-  Type extends Actions["type"],
-  Payload extends ActionsMap[Type]
+  Type extends SliderActions["type"],
+  Payload extends SliderActionsMap[Type]
 >(
   type: Type,
   ...payload: Payload extends undefined ? [undefined?] : [Payload]
@@ -26,7 +26,7 @@ const SliderProvider = ({ children }: any) => {
   });
 
   const dispatch: Dispatcher = useCallback((type, ...payload) => {
-    _dispatch({ type, payload: payload[0] } as Actions);
+    _dispatch({ type, payload: payload[0] } as SliderActions);
   }, []);
 
   return (

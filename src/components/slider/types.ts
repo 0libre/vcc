@@ -41,7 +41,7 @@ export type SliderState = {
   activeFilter: Filters;
 };
 
-export type ActionsMap = {
+export type SliderActionsMap = {
   addIdInView: IdInView;
   removeIdFromView: string;
   addCars: Car[];
@@ -50,9 +50,9 @@ export type ActionsMap = {
   setActiveId: string;
 };
 
-export type Actions = {
-  [Key in keyof ActionsMap]: {
+export type SliderActions = {
+  [Key in keyof SliderActionsMap]: {
     type: Key;
-    payload: ActionsMap[Key];
+    payload: SliderActionsMap[Key];
   };
-}[keyof ActionsMap];
+}[keyof SliderActionsMap];

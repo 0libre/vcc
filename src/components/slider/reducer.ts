@@ -1,8 +1,8 @@
-import { Actions, SliderState, Filters } from "./types";
+import { SliderActions, SliderState, Filters } from "./types";
 
 export function sliderReducer(
   state: SliderState,
-  action: Actions
+  action: SliderActions
 ): SliderState {
   switch (action.type) {
     case "activeFilter":

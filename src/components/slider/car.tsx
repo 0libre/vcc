@@ -6,11 +6,12 @@ import useSliderContext from "./useSliderContext";
 import { CarProps } from "./types";
 
 const CarContainer: React.FC<CarProps> = ({ car }) => {
-  const theme = useTheme();
   const [ref, inView] = useInView({ threshold: 1 });
   const {
     states: { addIdInView, removeIdFromView },
   } = useSliderContext();
+
+  const theme = useTheme();
 
   const carId = useMemo(() => car.id, [car]);
 
