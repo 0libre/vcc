@@ -1,8 +1,15 @@
 import { StrictMode, useContext } from "react";
-import { StyleProvider, ThemePicker, View, Logo, Spacer } from "vcc-ui";
+import {
+  styleRenderer,
+  StyleProvider,
+  ThemePicker,
+  View,
+  Logo,
+  Spacer,
+} from "vcc-ui";
+
 import ModeProvider, { ModeContext } from "../src/context/mode";
 import Slider from "../src/components/slider";
-import "../public/css/styles.css";
 
 const Themed = () => {
   const { mode } = useContext(ModeContext);
@@ -25,14 +32,28 @@ const Themed = () => {
   );
 };
 
-const App = () => (
-  <StrictMode>
-    <StyleProvider>
-      <ModeProvider>
-        <Themed />
-      </ModeProvider>
-    </StyleProvider>
-  </StrictMode>
-);
+const App = () => {
+  const renderer = styleRenderer();
+  renderer.renderStatic(
+    {
+      margin: 0,
+      padding: 0,
+    },
+    "body"
+  );
+  renderer.renderStatic({ transition: "transform 0.2s" }, "img.car-image");
+  renderer.renderStatic({ transform: "scale(1.1)" }, " img.car-image:hover");
+  renderer.renderStatic({ display: "none" }, "::-webkit-scrollbar");
+
+  return (
+    <StrictMode>
+      <StyleProvider renderer={renderer}>
+        <ModeProvider>
+          <Themed />
+        </ModeProvider>
+      </StyleProvider>
+    </StrictMode>
+  );
+};
 
 export default App;

@@ -97,8 +97,8 @@ const useSliderContext = () => {
     return bodyTypesArray;
   }, [cars]);
 
-  const debouncedHideNavigation: boolean = useDebounce<boolean>(
-    filteredCars.length === idsInView.length,
+  const debouncedShowNavigation: boolean = useDebounce<boolean>(
+    filteredCars.length !== idsInView.length,
     500
   );
 
@@ -108,7 +108,7 @@ const useSliderContext = () => {
       goBackward,
       forwardDisabled,
       backwardDisabled,
-      hideNavigation: debouncedHideNavigation,
+      showNavigation: debouncedShowNavigation,
     },
     data: {
       bodyTypes,

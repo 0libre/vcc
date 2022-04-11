@@ -33,6 +33,7 @@ const Cars: React.FC = () => {
         flexDirection: "row",
         scrollBehavior: "smooth",
         WebkitOverflowScrolling: "touch",
+        scrollSnapAlign: "start",
       }}
     >
       {cars

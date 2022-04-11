@@ -1,5 +1,14 @@
 import React, { useMemo, useContext } from "react";
-import { View, Flex, IconButton, Spacer, Text, Toggle } from "vcc-ui";
+import {
+  View,
+  Flex,
+  IconButton,
+  Spacer,
+  Text,
+  Toggle,
+  Click,
+  useTheme,
+} from "vcc-ui";
 import { ModeContext } from "../../context/mode";
 import useSliderContext from "./useSliderContext";
 import { PillProps } from "./types";
@@ -22,7 +31,7 @@ const ModeToggle: React.FC = () => {
 const NavButtons: React.FC = () => {
   const {
     navigation: {
-      hideNavigation,
+      showNavigation,
       goForward,
       goBackward,
       forwardDisabled,
@@ -44,7 +53,7 @@ const NavButtons: React.FC = () => {
       <div>
         <ModeToggle />
       </div>
-      {!hideNavigation && (
+      {showNavigation && (
         <Flex extend={{ flexDirection: "row" }}>
           <IconButton
             variant="outline"
@@ -70,19 +79,40 @@ const Pill: React.FC<PillProps> = ({ id }) => {
     states: { activeId },
   } = useSliderContext();
 
-  const fullId = `#${id}`;
-  const className = useMemo(
-    () => (activeId === id ? "active" : "inactive"),
-    [id, activeId]
-  );
+  const {
+    color: {
+      foreground: { primary, secondary },
+    },
+  } = useTheme();
 
-  return <a className={`pill ${className}`} href={fullId} />;
+  const fullId = `#${id}`;
+  const isActive = useMemo(() => activeId === id, [activeId]);
+
+  return (
+    <Click
+      href={fullId}
+      extend={{
+        width: "8px",
+        height: "8px",
+        background: secondary,
+        borderRadius: "50%",
+        transition: "0.5s",
+        ":active": {
+          top: "1px",
+        },
+        ":focus": {
+          background: primary,
+        },
+        ...(isActive ? { background: primary } : {}),
+      }}
+    />
+  );
 };
 
 const Pills: React.FC = () => {
   const {
     data: { cars },
-    navigation: { hideNavigation },
+    navigation: { showNavigation },
   } = useSliderContext();
 
   return (
@@ -104,7 +134,7 @@ const Pills: React.FC = () => {
           height: "10px;",
         }}
       >
-        {!hideNavigation && cars.map(({ id }) => <Pill key={id} id={id} />)}
+        {showNavigation && cars.map(({ id }) => <Pill key={id} id={id} />)}
       </Flex>
       <Spacer size={3} />
       <ModeToggle />
