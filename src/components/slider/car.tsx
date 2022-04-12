@@ -72,13 +72,13 @@ const CarContainer: React.FC<CarProps> = ({ car }) => {
       />
       <Flex extend={{ flexDirection: "row", justifyContent: "space-evenly" }}>
         <Block extend={{ textAlign: "center" }}>
-          <Link href={`/shop/${car.id}`} arrow="right">
+          <Link href={`/learn/${car.id}`} arrow="right">
             Learn
           </Link>
           <Spacer />
         </Block>
         <Block extend={{ textAlign: "center" }}>
-          <Link href={`/learn/${car.id}`} arrow="right">
+          <Link href={`/shop/${car.id}`} arrow="right">
             Shop
           </Link>
         </Block>
