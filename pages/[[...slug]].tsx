@@ -13,12 +13,18 @@ import Slider from "../src/components/slider";
 import URLS from "../src/URLS.json";
 
 export async function getStaticPaths() {
+  const response = await fetch(URLS.CARS);
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  const cars = await response.json();
   const paths = [
     {
       params: { slug: [] },
     },
+    ...cars.map((car: any) => `/#${car.id}`),
   ];
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps() {
