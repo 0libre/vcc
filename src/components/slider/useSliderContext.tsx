@@ -2,7 +2,7 @@ import { useContext, useEffect, useCallback, useMemo } from "react";
 import { SliderContext } from "./context";
 import useDebounce from "../../hooks/useDebounce";
 import useScrollIntoView from "../../hooks/useScrollIntoView";
-import { Car, Cars, Filters, IdInView, MaxAndMin } from "../../types/types";
+import { Car, Filters, IdInView, MaxAndMin } from "../../types/types";
 
 const useSliderContext = () => {
   const [{ activeId, cars, idsInView, activeFilter }, dispatch] =
@@ -54,7 +54,7 @@ const useSliderContext = () => {
   );
 
   const setCars = useCallback(
-    (cars: Cars) => {
+    (cars: Car[]) => {
       dispatch("addCars", cars);
     },
     [dispatch]
@@ -88,7 +88,7 @@ const useSliderContext = () => {
     }
   };
 
-  const filteredCars: Cars = useMemo(
+  const filteredCars: Car[] = useMemo(
     () => cars?.filter((car: Car) => !car.hide),
     [cars]
   );

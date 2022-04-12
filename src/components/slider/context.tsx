@@ -5,6 +5,7 @@ import {
   SliderContextInterface,
   SliderActions,
   Dispatcher,
+  Car,
 } from "../../types/types";
 
 const SliderContext = createContext<SliderContextInterface>([

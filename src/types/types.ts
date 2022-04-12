@@ -14,8 +14,6 @@ export type Car = {
   hide?: boolean;
 };
 
-export type Cars = Car[];
-
 export type CarProps = {
   car: Car;
 };
