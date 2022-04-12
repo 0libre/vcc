@@ -1,3 +1,3 @@
 {
-  "CARS": "http://localhost:3000/api/cars.json"
+  "CARS": "https://raw.githubusercontent.com/volvo-cars/god-frontend-code-test/master/public/api/cars.json"
 }
