@@ -1,14 +1,5 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  createContext,
-  useState,
-} from "react";
-
-type ModeContextInterface = {
-  mode: boolean;
-  setMode: Dispatch<SetStateAction<boolean>>;
-};
+import { useState, createContext } from "react";
+import { ModeContextInterface } from "../types/types";
 
 export const ModeContext = createContext<ModeContextInterface>({
   mode: false,

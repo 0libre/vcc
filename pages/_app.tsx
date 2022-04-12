@@ -20,6 +20,7 @@ const Themed = () => {
         extend={({ theme }) => ({
           background: theme.color.background.primary,
           height: "auto",
+          minHeight: "100vh",
           width: "100vw",
           justifyContent: "center",
         })}

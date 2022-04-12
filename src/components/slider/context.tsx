@@ -1,16 +1,11 @@
 import React, { createContext, useReducer, useCallback } from "react";
 import { sliderReducer } from "./reducer";
-import { Filters, SliderState, SliderActions, SliderActionsMap } from "./types";
-
-type Dispatcher = <
-  Type extends SliderActions["type"],
-  Payload extends SliderActionsMap[Type]
->(
-  type: Type,
-  ...payload: Payload extends undefined ? [undefined?] : [Payload]
-) => void;
-
-type SliderContextInterface = readonly [SliderState, Dispatcher];
+import {
+  Filters,
+  SliderContextInterface,
+  SliderActions,
+  Dispatcher,
+} from "../../types/types";
 
 const SliderContext = createContext<SliderContextInterface>([
   { activeId: "", idsInView: [], cars: [], activeFilter: Filters.all },

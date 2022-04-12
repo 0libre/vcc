@@ -2,7 +2,7 @@ import { useContext, useEffect, useCallback, useMemo } from "react";
 import { SliderContext } from "./context";
 import useDebounce from "../../hooks/useDebounce";
 import useScrollIntoView from "../../hooks/useScrollIntoView";
-import { Car, Cars, Filters, IdInView, MaxAndMin } from "./types";
+import { Car, Cars, Filters, IdInView, MaxAndMin } from "../../types/types";
 
 const useSliderContext = () => {
   const [{ activeId, cars, idsInView, activeFilter }, dispatch] =

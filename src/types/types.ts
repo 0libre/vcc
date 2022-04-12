@@ -56,3 +56,18 @@ export type SliderActions = {
     payload: SliderActionsMap[Key];
   };
 }[keyof SliderActionsMap];
+
+export type Dispatcher = <
+  Type extends SliderActions["type"],
+  Payload extends SliderActionsMap[Type]
+>(
+  type: Type,
+  ...payload: Payload extends undefined ? [undefined?] : [Payload]
+) => void;
+
+export type SliderContextInterface = readonly [SliderState, Dispatcher];
+
+export type ModeContextInterface = {
+  mode: boolean;
+  setMode: React.Dispatch<React.SetStateAction<boolean>>;
+};

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTheme, View, Text, Link, Flex, Block, Spacer } from "vcc-ui";
 import { useInView } from "react-hook-inview";
 import useSliderContext from "./useSliderContext";
-import { CarProps } from "./types";
+import { CarProps } from "../../types/types";
 
 const CarContainer: React.FC<CarProps> = ({ car }) => {
   const [ref, inView] = useInView({ threshold: 1 });

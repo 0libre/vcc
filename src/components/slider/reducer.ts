@@ -1,4 +1,4 @@
-import { SliderActions, SliderState, Filters } from "./types";
+import { SliderActions, SliderState, Filters } from "../../types/types";
 
 export function sliderReducer(
   state: SliderState,

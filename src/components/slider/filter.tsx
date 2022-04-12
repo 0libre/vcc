@@ -1,6 +1,6 @@
 import { View, TabNav, TabNavItem, Spacer } from "vcc-ui";
 import useSliderContext from "./useSliderContext";
-import { Filters } from "./types";
+import { Filters } from "../../types/types";
 
 const Filter: React.FC = () => {
   const {

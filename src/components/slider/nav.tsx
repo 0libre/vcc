@@ -11,7 +11,7 @@ import {
 } from "vcc-ui";
 import { ModeContext } from "../../context/mode";
 import useSliderContext from "./useSliderContext";
-import { PillProps } from "./types";
+import { PillProps } from "../../types/types";
 
 const ModeToggle: React.FC = () => {
   const { mode, setMode } = useContext(ModeContext);
