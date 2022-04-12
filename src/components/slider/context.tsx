@@ -1,5 +1,5 @@
-import React, { createContext, useReducer, useCallback } from "react";
-import { sliderReducer } from "./reducer";
+import { createContext, useReducer, useCallback } from "react";
+import sliderReducer from "./reducer";
 import {
   Filters,
   SliderContextInterface,
@@ -12,11 +12,12 @@ const SliderContext = createContext<SliderContextInterface>([
   () => {},
 ]);
 
-const SliderProvider = ({ children }: any) => {
+const SliderProvider = (props: any) => {
+  const { children, cars } = props;
   const [state, _dispatch] = useReducer(sliderReducer, {
     activeId: "",
     idsInView: [],
-    cars: [],
+    cars,
     activeFilter: Filters.all,
   });
 

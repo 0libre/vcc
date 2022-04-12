@@ -8,12 +8,39 @@ import {
   Spacer,
 } from "vcc-ui";
 
-import ModeProvider, { ModeContext } from "../src/context/mode";
+import AppProvider, { AppContext } from "../src/context/app";
 import Slider from "../src/components/slider";
+import URLS from "../src/URLS.json";
+
+export async function getStaticPaths() {
+  const paths = [
+    {
+      params: { slug: [] },
+    },
+  ];
+  return { paths, fallback: true };
+}
+
+export async function getStaticProps() {
+  try {
+    const response = await fetch(URLS.CARS);
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+    const cars = await response.json();
+    return {
+      props: {
+        cars,
+      },
+    };
+  } catch (e) {
+    console.error(e);
+    throw new Error("Something went wrong");
+  }
+}
 
 const Themed = () => {
-  const { choosenTheme } = useContext(ModeContext);
-
+  const { choosenTheme } = useContext(AppContext);
   return (
     <ThemePicker variant={choosenTheme}>
       <View
@@ -35,7 +62,7 @@ const Themed = () => {
   );
 };
 
-const App = () => {
+const App = ({ cars }: { cars: any }) => {
   const renderer = styleRenderer();
   renderer.renderStatic(
     {
@@ -51,9 +78,9 @@ const App = () => {
   return (
     <StrictMode>
       <StyleProvider renderer={renderer}>
-        <ModeProvider>
+        <AppProvider cars={cars}>
           <Themed />
-        </ModeProvider>
+        </AppProvider>
       </StyleProvider>
     </StrictMode>
   );

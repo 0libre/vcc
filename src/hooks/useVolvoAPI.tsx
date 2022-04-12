@@ -1,6 +1,10 @@
 import { useMemo } from "react";
 
-const useVolvoAPI = () => {
+const useVolvoAPI: () => {
+  VolvoAPI: {
+    getData: (url: string) => Promise<any>;
+  };
+} = () => {
   const getData = async (url: string) => {
     try {
       const response = await fetch(url);

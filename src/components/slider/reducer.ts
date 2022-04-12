@@ -1,9 +1,9 @@
 import { SliderActions, SliderState, Filters } from "../../types/types";
 
-export function sliderReducer(
+const sliderReducer = (
   state: SliderState,
   action: SliderActions
-): SliderState {
+): SliderState => {
   switch (action.type) {
     case "activeFilter":
       return {
@@ -43,4 +43,6 @@ export function sliderReducer(
         ],
       };
   }
-}
+};
+
+export default sliderReducer;

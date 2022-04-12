@@ -89,23 +89,23 @@ const useSliderContext = () => {
   };
 
   const filteredCars: Cars = useMemo(
-    () => cars.filter((car: Car) => !car.hide),
+    () => cars?.filter((car: Car) => !car.hide),
     [cars]
   );
 
-  const forwardDisabled = maxPosition + 1 >= filteredCars.length;
+  const forwardDisabled = maxPosition + 1 >= filteredCars?.length;
   const backwardDisabled = minPosition - 1 <= -1;
 
   const bodyTypes = useMemo(() => {
     const bodyTypesArray = Array.from(
-      new Set(cars.map(({ bodyType }: Car) => bodyType))
+      new Set(cars?.map(({ bodyType }: Car) => bodyType))
     );
     bodyTypesArray.unshift(Filters.all);
     return bodyTypesArray;
   }, [cars]);
 
   const debouncedShowNavigation: boolean = useDebounce<boolean>(
-    filteredCars.length !== idsInView.length,
+    filteredCars?.length !== idsInView.length,
     500
   );
 

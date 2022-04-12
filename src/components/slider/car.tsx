@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import Image from "next/image";
 import { useTheme, View, Text, Link, Flex, Block, Spacer } from "vcc-ui";
 import { useInView } from "react-hook-inview";

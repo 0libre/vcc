@@ -67,8 +67,9 @@ export type Dispatcher = <
 
 export type SliderContextInterface = readonly [SliderState, Dispatcher];
 
-export type ModeContextInterface = {
+export type AppContextInterface = {
   mode: boolean;
   toggle: React.ChangeEventHandler<HTMLInputElement>;
   choosenTheme: "dark" | "light";
+  cars: [];
 };

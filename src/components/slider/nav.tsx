@@ -1,4 +1,4 @@
-import React, { useMemo, useContext } from "react";
+import { useMemo, useContext } from "react";
 import {
   View,
   Flex,
@@ -9,12 +9,12 @@ import {
   Click,
   useTheme,
 } from "vcc-ui";
-import { ModeContext } from "../../context/mode";
+import { AppContext } from "../../context/app";
 import useSliderContext from "./useSliderContext";
 import { PillProps } from "../../types/types";
 
 const ModeToggle: React.FC = () => {
-  const { mode, toggle } = useContext(ModeContext);
+  const { mode, toggle } = useContext(AppContext);
   return (
     <>
       <Text>Dark mode</Text>
@@ -134,7 +134,7 @@ const Pills: React.FC = () => {
           height: "10px;",
         }}
       >
-        {showNavigation && cars.map(({ id }) => <Pill key={id} id={id} />)}
+        {showNavigation && cars?.map(({ id }) => <Pill key={id} id={id} />)}
       </Flex>
       <Spacer size={3} />
       <ModeToggle />
