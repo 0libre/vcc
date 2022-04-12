@@ -14,16 +14,11 @@ import useSliderContext from "./useSliderContext";
 import { PillProps } from "../../types/types";
 
 const ModeToggle: React.FC = () => {
-  const { mode, setMode } = useContext(ModeContext);
-  const handleToggle = () => setMode((old) => !old);
+  const { mode, toggle } = useContext(ModeContext);
   return (
     <>
       <Text>Dark mode</Text>
-      <Toggle
-        checked={mode}
-        aria-label="Toggle Label"
-        onChange={handleToggle}
-      />
+      <Toggle aria-label="Toggle Label" checked={mode} onChange={toggle} />
     </>
   );
 };

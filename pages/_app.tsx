@@ -12,10 +12,10 @@ import ModeProvider, { ModeContext } from "../src/context/mode";
 import Slider from "../src/components/slider";
 
 const Themed = () => {
-  const { mode } = useContext(ModeContext);
-  const variant = mode ? "dark" : "light";
+  const { choosenTheme } = useContext(ModeContext);
+
   return (
-    <ThemePicker variant={variant}>
+    <ThemePicker variant={choosenTheme}>
       <View
         extend={({ theme }) => ({
           background: theme.color.background.primary,
